@@ -5,10 +5,15 @@
 #define SIZE_ERROR "Invalid size\n"
 #define NUM_ERROR "Invalid number\n"
 
+int get_array(int** input_array); //Receive array of numbers from the user. 
+
 int main(){
 	int input_array_size, *input_array; //Contains the numbers received 
 	input_array_size = get_array(&input_array);
-	return 0
+	for (int i=0;i<input_array_size;i++){
+		printf("%d\n", *input_array+i);
+	}
+	return 0;
 }
 
 int get_array(int** input_array){
@@ -36,7 +41,7 @@ int get_array(int** input_array){
 	// Fill array with user inputs
 	printf("Enter numbers:\n");
 	for (int i=0;i<size;i++){
-		if (!scanf(" %d",input_array+i)){ 
+		if (!scanf(" %d",*input_array+i)){ 
 			printf(NUM_ERROR);
 			free(*input_array);
 			return 0;
