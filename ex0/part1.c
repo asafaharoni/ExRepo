@@ -16,7 +16,7 @@ int main(){
 	if (input_array_size > 0){
 		for (int i=0;i<input_array_size;i++){
 			//Check if number is power of 2.
-			n = *input_array+i;
+			n = input_array[i];
 			exponent = integer_log2‎(n);
 			if (exponent > -1){
 				printf("The number %d is a power of 2: %d = 2^%d\n",n,n,exponent);
