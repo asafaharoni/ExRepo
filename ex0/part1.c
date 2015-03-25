@@ -6,30 +6,32 @@
 #define NUMBER_ERROR "Invalid number\n"
 
 int get_array(int** input_array); //Receive array of numbers from the user. 
-int integer_log2‎(int n); //Calculates log base 2. if result not integer, returns -1.
+int integer_log2(int n); //Calculates log base 2. if result not integer, returns -1.
 
 int main(){
 	int input_array_size, *input_array; //Contains the numbers received 
 	input_array_size = get_array(&input_array);
-	int exponent;
-	int n;
+	int exponent,n;
+	int accumulated_exponents=0;
 	if (input_array_size > 0){
 		for (int i=0;i<input_array_size;i++){
 			//Check if number is power of 2.
+
 			n = input_array[i];
-			exponent = integer_log2‎(n);
+			exponent = integer_log2(n);
 			if (exponent > -1){
+				accumulated_exponents += exponent; 
 				printf("The number %d is a power of 2: %d = 2^%d\n",n,n,exponent);
 			}
-			
 		}
 		free(input_array);
+		printf("Total exponent sum is %d\n",accumulated_exponents);
 	}
 	
 	return 0;
 }
 
-int integer_log2‎(int n){
+int integer_log2(int n){
 	if (n <= 0) {
 		return -2;
 	}

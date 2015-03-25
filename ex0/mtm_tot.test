@@ -1,0 +1,24 @@
+#!/bin/bash
+
+# test if mtm_tot exists in current directory
+if [ -e mtm_tot ]; then
+  echo "mtm_tot found. Starts Testing" >&2
+else
+  echo "mtm_tot not found. Exiting..." >&2
+  exit 1
+fi
+
+
+# Compare outputs of mtm_tot and mtm_sol.
+for (( i=1; i<=12; i++ )); do
+    echo Starting test number ${i}
+    ./mtm_sol < test${i}.in > test${i}.out
+	echo Got official result
+    ./mtm_tot < test${i}.in > test${i}.tmp
+	echo Got your result
+    diff test${i}.tmp test${i}.out
+	echo Finished test number ${i}
+done
+
+
+echo "Testing ended!"
